@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from pynput.keyboard import Key, Controller
 
-class LoginLogoutPage:
+class LoginPage:
   LOGIN_INPUT = (By.ID, "username-parameter")
   PASSWORD_INPUT = (By.ID, "password-parameter")
   BUTTON_LOGIN = (By.XPATH, "/html/body/div/div[3]/div[2]/form/div[2]/button/span")
@@ -12,35 +12,35 @@ class LoginLogoutPage:
   RELOG_IFRAME = (By.TAG_NAME, "iframe")
 
   def login_pass(self, userLogin):
-    login = self.driver.find_element(*LoginLogoutPage.LOGIN_INPUT)
+    login = self.driver.find_element(*LoginPage.LOGIN_INPUT)
     login.send_keys(userLogin)
     
   def password_pass(self, userPassword):
-    password = self.driver.find_element(*LoginLogoutPage.PASSWORD_INPUT)
+    password = self.driver.find_element(*LoginPage.PASSWORD_INPUT)
     password.send_keys(userPassword)
 
   def login_button_press(self):
-    button = self.driver.find_element(*LoginLogoutPage.BUTTON_LOGIN)
+    button = self.driver.find_element(*LoginPage.BUTTON_LOGIN)
     button.click()
     return button
 
   def login_test_check(self):
-    button = self.driver.find_element(*LoginLogoutPage.BUTTON_ZALOGUJ)
+    button = self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ)
     return button
 
   def zaloguj_button_press(self):
-    button = self.driver.find_element(*LoginLogoutPage.BUTTON_ZALOGUJ)
+    button = self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ)
     button.click()
 
   def select_shop(self, shop):
-    input = self.driver.find_element(*LoginLogoutPage.INPUT_SHOP)
+    input = self.driver.find_element(*LoginPage.INPUT_SHOP)
     input.click()
     keyboard = Controller()
     keyboard.type(shop)
-    select = self.driver.find_element(*LoginLogoutPage.SELECT_SHOP)
+    select = self.driver.find_element(*LoginPage.SELECT_SHOP)
     select.click()
 
   def logout_press(self):
-    self.driver.switch_to.frame(self.driver.find_element(*LoginLogoutPage.RELOG_IFRAME))
-    button = self.driver.find_element(*LoginLogoutPage.BUTTON_LOGOUT)
+    self.driver.switch_to.frame(self.driver.find_element(*LoginPage.RELOG_IFRAME))
+    button = self.driver.find_element(*LoginPage.BUTTON_LOGOUT)
     button.click()

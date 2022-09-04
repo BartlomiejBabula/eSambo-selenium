@@ -1,18 +1,16 @@
 import pytest
 import time
-# import sys
-# sys.path.append('..\\poetry\tests')
-from .configTest import setup, franchiseStore
-from pages.loginLogoutPage import LoginLogoutPage
+from tests.configTest import setup, franchiseStore
+from pages.loginPage import LoginPage
 
 @pytest.mark.usefixtures("setup")
-class TestLoginLogout:
+class Test_login_logout:
      def test_login(self): 
-        assert LoginLogoutPage.login_test_check(self)
+         assert LoginPage.login_test_check(self)
    
      def test_logout(self):
-        LoginLogoutPage.select_shop(self, franchiseStore)
-        LoginLogoutPage.zaloguj_button_press(self)
-        LoginLogoutPage.logout_press(self)
-        time.sleep(2)
-        assert LoginLogoutPage.login_button_press(self)
+        LoginPage.select_shop(self, franchiseStore)
+        LoginPage.zaloguj_button_press(self)
+        LoginPage.logout_press(self)
+        time.sleep(1)
+        assert LoginPage.login_button_press(self)
