@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from pynput.keyboard import Key, Controller
 
 class LoginPage:
   LOGIN_INPUT = (By.ID, "username-parameter")
@@ -10,6 +9,7 @@ class LoginPage:
   INPUT_SHOP = (By.ID, "id2_title")
   BUTTON_LOGOUT = (By.XPATH, "//*[text()[contains(.,'Wyloguj')]]") 
   RELOG_IFRAME = (By.TAG_NAME, "iframe")
+  
 
   def login_pass(self, userLogin):
     login = self.driver.find_element(*LoginPage.LOGIN_INPUT)
@@ -22,25 +22,23 @@ class LoginPage:
   def login_button_press(self):
     button = self.driver.find_element(*LoginPage.BUTTON_LOGIN)
     button.click()
-    return button
+
 
   def login_test_check(self):
     button = self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ)
+    return button
+
+  def logout_test_check(self):
+    button = self.driver.find_element(*LoginPage.BUTTON_LOGIN)
     return button
 
   def zaloguj_button_press(self):
     button = self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ)
     button.click()
 
-  def select_shop(self, shop):
-    input = self.driver.find_element(*LoginPage.INPUT_SHOP)
-    input.click()
-    keyboard = Controller()
-    keyboard.type(shop)
-    select = self.driver.find_element(*LoginPage.SELECT_SHOP)
-    select.click()
-
   def logout_press(self):
     self.driver.switch_to.frame(self.driver.find_element(*LoginPage.RELOG_IFRAME))
     button = self.driver.find_element(*LoginPage.BUTTON_LOGOUT)
     button.click()
+
+

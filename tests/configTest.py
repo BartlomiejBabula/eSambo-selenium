@@ -5,6 +5,7 @@ import time
 from dotenv import load_dotenv
 from datetime import datetime
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver import Chrome
 from webdriver_manager.firefox import GeckoDriverManager
@@ -46,27 +47,49 @@ def setup(request):
     driver.close()
 
 
-def login_franchise(self):
-        LoginPage.select_shop(self, franchiseStore)
-        LoginPage.zaloguj_button_press(self)
+def check_for_element(self, locator):
+                try:
+                    self.driver.find_element(locator)
+                except :
+                    return False
+                return True
 
-def check_block_ui(self):
-        try:
-            self.driver.find_element(By.CLASS_NAME, "blockOverlay")
-        except :
-            return False
-        return True
-
-def getElement(self, locator):    
-            for x in range(20):
-                check = check_block_ui(self)
-                if check:
+def getElement(self, locator): 
+    for x in range(60):
+            try:
+                try:
+                    self.driver.find_element(By.XPATH, '//div[@class="blockUI blockOverlay"]')
                     time.sleep(0.5)
-                else:
-                    try:
-                        element = self.driver.find_element(*locator)
-                    except:
-                        time.sleep(0.5)
-            return element
+                except:
+                    return self.driver.find_element(*locator)            
+            except: 
+                time.sleep(0.5)
+    raise RuntimeError(f"Page loading timeout") 
+    
+def select_store(self, store):
+        input = getElement(self, LoginPage.INPUT_SHOP)
+        input.click()
+        time.sleep(0.5)
+        franchiseStoreSelect = getElement(self, (By.XPATH, f"//span[text()[contains(.,'{store}')]]") )
+        franchiseStoreSelect.click()
+        button = getElement(self, LoginPage.BUTTON_ZALOGUJ)
+        button.click()
+
+def refresh_until(self, locator):
+    for x in range(10):
+            time.sleep(1)
+            try:
+                self.driver.find_element(*locator)
+                break
+            except NoSuchElementException:
+                self.driver.find_element(By.XPATH, "//*[text()[contains(.,'Odśwież ręcznie')]]").click() 
+
+                        
+        
+        
+            
+            
+    
+
             
 

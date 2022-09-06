@@ -9,7 +9,7 @@ class OrdersPage:
   PREPARE_ORDER_BUTTON = (By.XPATH, "//*[text()[contains(.,'+ Przygotuj zamówienie')]]") 
   REPLENISH_ASSORTMENT_BUTTON = (By.XPATH, "//*[text()[contains(.,'+ Uzupełnij asortyment')]]") 
   PREPARE_ORDER_TITLE = (By.XPATH, "//*[text()[contains(.,'Zamówienia w przygotowaniu')]]")
-  ORDER_IN_FUTURE_TITLE = (By.XPATH, "//*[text()[contains(.,'Zamówienia w przyszłość')]]")
+  ORDER_IN_FUTURE_TITLE = (By.XPATH, "//div[text()[contains(.,'Zamówienia w przyszłość')]]")
   ORDER_FROM_SCANNER_TITLE = (By.XPATH, "//*[text()[contains(.,'ZAMÓWIENIE - DOSTĘPNE PLIKI SKANERA')]]") 
   ORDER_LIST_FIRST_ORDER = (By.CSS_SELECTOR, "tr.odd:nth-child(1) > td:nth-child(4)") 
   ORDER_LIST_SHIPMENT = (By.XPATH, "//*[text()[contains(.,'Zlecono wysłanie')]]")
