@@ -12,17 +12,13 @@ class LoginPage:
   
 
   def login_pass(self, userLogin):
-    login = self.driver.find_element(*LoginPage.LOGIN_INPUT)
-    login.send_keys(userLogin)
+    self.driver.find_element(*LoginPage.LOGIN_INPUT).send_keys(userLogin)
     
   def password_pass(self, userPassword):
-    password = self.driver.find_element(*LoginPage.PASSWORD_INPUT)
-    password.send_keys(userPassword)
+    self.driver.find_element(*LoginPage.PASSWORD_INPUT).send_keys(userPassword)
 
   def login_button_press(self):
-    button = self.driver.find_element(*LoginPage.BUTTON_LOGIN)
-    button.click()
-
+    self.driver.find_element(*LoginPage.BUTTON_LOGIN).click()
 
   def login_test_check(self):
     button = self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ)
@@ -33,12 +29,10 @@ class LoginPage:
     return button
 
   def zaloguj_button_press(self):
-    button = self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ)
-    button.click()
+    self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ).click()
 
   def logout_press(self):
     self.driver.switch_to.frame(self.driver.find_element(*LoginPage.RELOG_IFRAME))
-    button = self.driver.find_element(*LoginPage.BUTTON_LOGOUT)
-    button.click()
+    self.driver.find_element(*LoginPage.BUTTON_LOGOUT).click()
 
 
