@@ -47,13 +47,6 @@ def setup(request):
     driver.close()
 
 
-def check_for_element(self, locator):
-                try:
-                    self.driver.find_element(locator)
-                except :
-                    return False
-                return True
-
 def getElement(self, locator): 
     for x in range(60):
             try:
@@ -74,6 +67,7 @@ def select_store(self, store):
         franchiseStoreSelect.click()
         button = getElement(self, LoginPage.BUTTON_ZALOGUJ)
         button.click()
+        self.driver.switch_to.frame(self.driver.find_element(*LoginPage.RELOG_IFRAME))
 
 def refresh_until(self, locator):
     for x in range(10):
@@ -82,7 +76,7 @@ def refresh_until(self, locator):
                 self.driver.find_element(*locator)
                 break
             except NoSuchElementException:
-                self.driver.find_element(By.XPATH, "//*[text()[contains(.,'Odśwież ręcznie')]]").click() 
+                self.driver.find_element(By.XPATH, "//*[text()[contains(.,'Odśwież')]]").click() 
 
                         
         

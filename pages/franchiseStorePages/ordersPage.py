@@ -17,26 +17,22 @@ class OrdersPage:
   WYKONAJ_BUTTON = (By.CSS_SELECTOR, "[value^='Wykonaj']")
   CONFIRM_BUTTON = (By.CSS_SELECTOR, "[value^='Zatwierdź']")
   RUN_TASK_BUTTON = (By.CSS_SELECTOR, "[value^='Uruchom Zadanie']")
-  CLOSE_BUTTON =(By.CSS_SELECTOR, "[value^='Zamknij']")
+  CLOSE_BUTTON = (By.CSS_SELECTOR, "[value^='Zamknij']")
   ORDER_IN_FUTURE_BUTTON = (By.XPATH, "//*[text()[contains(.,'Zamówienie w przyszłość')]]")
   ORDER_IN_FUTURE_DATA_INPUT = (By.CLASS_NAME, "hasDatepicker")
   ACTIVE_DATE_PICK = (By.CSS_SELECTOR, "a.ui-state-active")
   ORDER_FROM_SCANER_TAB = (By.XPATH, "//*[text()[contains(.,'Zamów ze skanera lub pliku')]]")
-  LOAD_FILE_BUTTON =(By.XPATH, "//*[text()[contains(.,'Wczytaj plik')]]")
-  LOAD_SCANNER_BUTTON =(By.XPATH, "//*[text()[contains(.,'Prześlij plik ze skanera')]]")
-  SELECT_FILE=(By.CLASS_NAME, 'ml1')
-  SELECT_PATH_SCANNER=(By.XPATH, './/span[2]/div[3]/table/tbody/tr/td[2]/div/span/select')
-  REFRESH_BUTTON =(By.XPATH, "//*[text()[contains(.,'Odśwież ręcznie')]]")
-  
+  LOAD_FILE_BUTTON = (By.XPATH, "//*[text()[contains(.,'Wczytaj plik')]]")
+  LOAD_SCANNER_BUTTON = (By.XPATH, "//*[text()[contains(.,'Prześlij plik ze skanera')]]")
+  SELECT_FILE = (By.CLASS_NAME, 'ml1')
+  SELECT_PATH_SCANNER = (By.XPATH, './/span[2]/div[3]/table/tbody/tr/td[2]/div/span/select')  
 
 
   def prepare_order_press(self):
-    button = getElement(self, OrdersPage.PREPARE_ORDER_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.PREPARE_ORDER_BUTTON).click()
 
   def prepare_order_check(self):
-    check = getElement(self, OrdersPage.PREPARE_ORDER_TITLE)
-    return check
+    return getElement(self, OrdersPage.PREPARE_ORDER_TITLE)
 
   def first_order_press(self):
     actionChains = ActionChains(self.driver)
@@ -44,72 +40,55 @@ class OrdersPage:
     actionChains.double_click(order).perform()
 
   def send_order_inside_order_button_press(self):
-    button = getElement(self, OrdersPage.SEND_ORDER_INSIDE_ORDER_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.SEND_ORDER_INSIDE_ORDER_BUTTON).click()
 
   def send_operation(self):
-    button = getElement(self, OrdersPage.WYKONAJ_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.WYKONAJ_BUTTON).click()
 
   def close_operation(self):
-    button = getElement(self, OrdersPage.CLOSE_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.CLOSE_BUTTON).click()
     
   def replenish_assortment_press(self):  
-    button = getElement(self, OrdersPage.REPLENISH_ASSORTMENT_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.REPLENISH_ASSORTMENT_BUTTON).click()
 
   def order_in_future_press(self):
-    button = getElement(self, OrdersPage.ORDER_IN_FUTURE_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.ORDER_IN_FUTURE_BUTTON).click()
 
   def order_in_future_input_send(self, data):
-    input = getElement(self, OrdersPage.ORDER_IN_FUTURE_DATA_INPUT)
-    input.send_keys(data)
+    getElement(self, OrdersPage.ORDER_IN_FUTURE_DATA_INPUT).send_keys(data)
 
   def active_date_select(self):
-    button = getElement(self, OrdersPage.ACTIVE_DATE_PICK)
-    button.click()
-
+    getElement(self, OrdersPage.ACTIVE_DATE_PICK).click()
+  
   def prepare_order_in_future_check(self):
-    check = getElement(self, OrdersPage.ORDER_IN_FUTURE_TITLE)
-    return check
+    return getElement(self, OrdersPage.ORDER_IN_FUTURE_TITLE)
 
   def order_list_sort_by_shipment(self):
-    button = getElement(self, OrdersPage.ORDER_LIST_SHIPMENT)
-    button.click()
+    getElement(self, OrdersPage.ORDER_LIST_SHIPMENT).click()
 
   def tab_order_from_scanner_press(self):
-    button = getElement(self, OrdersPage.ORDER_FROM_SCANER_TAB)
-    button.click()
+    getElement(self, OrdersPage.ORDER_FROM_SCANER_TAB).click()
 
   def load_file_button_press(self):
-    button = getElement(self, OrdersPage.LOAD_FILE_BUTTON)
-    button.click()
-
+    getElement(self, OrdersPage.LOAD_FILE_BUTTON).click()
+    
   def load_scanner_button_press(self):
-    button = getElement(self, OrdersPage.LOAD_SCANNER_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.LOAD_SCANNER_BUTTON).click()
 
   def select_file(self, orderFile) :
-    button = getElement(self, OrdersPage.SELECT_FILE)   
-    button.send_keys(orderFile)
+    getElement(self, OrdersPage.SELECT_FILE).send_keys(orderFile) 
 
   def confirm_button_press(self):
-    button = getElement(self, OrdersPage.CONFIRM_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.CONFIRM_BUTTON).click()
 
   def run_task_press(self):
-    button = getElement(self, OrdersPage.RUN_TASK_BUTTON)
-    button.click()
+    getElement(self, OrdersPage.RUN_TASK_BUTTON).click()
 
   def prepare_order_from_scanner_check(self):
-    check = getElement(self, OrdersPage.ORDER_FROM_SCANNER_TITLE)
-    return check
+    return getElement(self, OrdersPage.ORDER_FROM_SCANNER_TITLE)
 
   def send_order_from_file_check(self):
-    check = getElement(self, (By.XPATH, "//*[text()[contains(.,'Generowanie zamówień zakończyło się.')]]")) 
-    return check
+    return getElement(self, (By.XPATH, "//*[text()[contains(.,'Generowanie zamówień zakończyło się.')]]")) 
 
   def order_from_scanner_icon_press(self, file_name):
     checkbox = getElement(self, (By.XPATH, f"//*[text()[contains(.,'{file_name}')]]"))
@@ -122,6 +101,3 @@ class OrdersPage:
     value = select.find_element(By.XPATH,".//option[2]")
     value.click()  
 
-  def refresh_press(self):
-    button = getElement(self, OrdersPage.REFRESH_BUTTON)
-    button.click()
