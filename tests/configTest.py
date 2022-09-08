@@ -2,7 +2,7 @@ import pytest
 import os
 import sys
 import time
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 from datetime import datetime
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
@@ -12,18 +12,26 @@ from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver import Firefox
 from pages.loginPage import LoginPage
 
-# wywalić sleepy
-load_dotenv(override=False)
+url = "http://10.5.1.125:17013/esambo/ifp"
+password = "eSambo001"
+login = "automatic.test.001"
+driverEnv = "chrome"
+franchiseStore = "A88"
+networkStore = "203"
+orderFile = "order_file.txt"
+orderScanner = "order_scanner.txt"
 
-url = os.getenv('URL')
-password = os.getenv('USER_PASSWORD')
-login = os.getenv('USER_LOGIN')
-driverEnv = os.getenv('DRIVER')
-franchiseStore = os.getenv('FRANCHISE_STORE')
-networkStore = os.getenv('NETWORK_STORE')
-orderFile = os.getenv('ORDER_FILE_NAME')
-orderScanner = os.getenv('ORDER_SCANNER_NAME')
-timeout = os.getenv('TIMEOUT')
+if find_dotenv():
+    load_dotenv(override=True)
+    url = os.getenv('URL')
+    password = os.getenv('USER_PASSWORD')
+    login = os.getenv('USER_LOGIN')
+    driverEnv = os.getenv('DRIVER')
+    franchiseStore = os.getenv('FRANCHISE_STORE')
+    networkStore = os.getenv('NETWORK_STORE')
+    orderFile = os.getenv('ORDER_FILE_NAME')
+    orderScanner = os.getenv('ORDER_SCANNER_NAME')
+
 orderFilePath = os.path.join(sys.path[0] , f'ScannerFiles/{orderFile}')
 orderScannerPath = os.path.join(sys.path[0] , f'ScannerFiles/{orderScanner}')
 
@@ -34,7 +42,6 @@ def setup(request):
         driver = Chrome(executable_path=ChromeDriverManager().install())
     if driverEnv == "firefox":
         driver = Firefox(executable_path=GeckoDriverManager().install()) 
-    # driver.implicitly_wait(10)
     driver.get(url)
     driver.maximize_window()
     driver.find_element(*LoginPage.LOGIN_INPUT).send_keys(login)
