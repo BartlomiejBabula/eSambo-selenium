@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 @pytest.mark.usefixtures("setup")
 class Test_navigation_menu:
 
+
     def test_menu_order(self):
         select_store(self, franchiseStore)
         HomePage.articles_press(self)
@@ -115,4 +116,6 @@ class Test_navigation_menu:
         HomePage.homepage_press(self)
         HomePage.change_password_press(self)
         assert getElement(self, (By.XPATH, "//*[text()[contains(.,'Zmiana hasła')]]"))
+
+    
 
