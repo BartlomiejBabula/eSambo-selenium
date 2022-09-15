@@ -70,20 +70,25 @@ def select_store(self, store):
         input = getElement(self, LoginPage.INPUT_SHOP)
         input.click()
         time.sleep(0.5)
-        franchiseStoreSelect = getElement(self, (By.XPATH, f"//span[text()[contains(.,'{store}')]]") )
-        franchiseStoreSelect.click()
+        storeSelect = getElement(self, (By.XPATH, f"//span[text()[contains(.,'{store}')]]") )
+        storeSelect.click()
         button = getElement(self, LoginPage.BUTTON_ZALOGUJ)
         button.click()
         self.driver.switch_to.frame(self.driver.find_element(*LoginPage.RELOG_IFRAME))
 
-def refresh_until(self, locator):
+def refresh_until(self, locator = (By.XPATH, "//span[contains(@aria-valuenow, '100')]")):
     for x in range(10):
-            time.sleep(1)
             try:
                 self.driver.find_element(*locator)
                 break
             except NoSuchElementException:
-                self.driver.find_element(By.XPATH, "//*[text()[contains(.,'Odśwież')]]").click() 
+                try:
+                    refresh = self.driver.find_element(By.XPATH, "//a//*[text()[contains(.,'Odśwież')]]") 
+                    refresh.click()
+                    time.sleep(1)
+                except:
+                    time.sleep(1)
+                
 
                         
         

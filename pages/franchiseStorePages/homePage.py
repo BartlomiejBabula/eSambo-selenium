@@ -14,6 +14,7 @@ class HomePage:
   ADMINISTRATION_BUTTON = (By.XPATH, "//*[text()[contains(.,'Administracja')]]")
   ADMINISTRATION_STORE_BUTTON = (By.XPATH, "//*[text()[contains(.,'Sklep')]]")
   ADMINISTRATION_USERS_BUTTON = (By.XPATH, "//*[text()[contains(.,'Użytkownicy')]]")
+  WAREHOUSE_MANAGEMENT_BUTTON = (By.XPATH, "//*[text()[contains(.,'Gospodarka magazynowa')]]") 
   ORDERS_BUTTON = (By.XPATH, "/html/body/form/div[4]/div[1]/div[1]/div[2]/ul/li[5]/a/span[2]")
   ORDERS_MENU_PREPARE_ORDERS = (By.XPATH, "//*[text()[contains(.,'W przygotowaniu')]]")
   ORDERS_MENU_DESKTOP_BUTTON = (By.XPATH, "//*[text()[contains(.,'Pulpit zamówień')]]") 
@@ -160,3 +161,6 @@ class HomePage:
 
   def orders_scanner_log_press(self):
     getElement(self, HomePage.ORDERS_MENU_SCANNER_LOG).click()
+
+  def warehouse_management_press(self):
+    getElement(self, HomePage.WAREHOUSE_MANAGEMENT_BUTTON).click()
