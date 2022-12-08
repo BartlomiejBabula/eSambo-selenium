@@ -44,7 +44,7 @@ class OrdersPage:
   FIND_ORDER_MENU_SOURCE_ORDER_FROM_SCANNER = (By.XPATH, "//*[text()[contains(.,'Z pliku_Skaner')]]")
   FIND_ORDER_MENU_SOURCE_ORDER_CENTRAL = (By.XPATH, "//*[text()[contains(.,'Centralne')]]")
   FIND_ORDER_MENU_SOURCE_ORDER_FROM_FRANET = (By.XPATH, "//*[text()[contains(.,'Z pliku_Franet')]]")
-  FIND_ORDER_MENU_SOURCE_ORDER_AUTOMATIC = (By.XPATH, "//*[text()[contains(.,'Automat')]]")
+  FIND_ORDER_MENU_SOURCE_ORDER_AUTOMATIC = (By.XPATH, "//*[text()[contains(.,'Automat')]][contains(@id, 'select2')]")
   FIND_ORDER_MENU_DATE_FROM_INPUT = (By.XPATH, "//*[contains(@name, ':orderFrom:datePicker')]")
   FIND_ORDER_MENU_DATE_TO_INPUT = (By.XPATH, "//*[contains(@name, ':orderTo:datePicker')]")
   FIND_ORDER_MENU_DELIVERY_FROM_INPUT = (By.XPATH, "//*[contains(@name, ':deliveryFrom')]")
