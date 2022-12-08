@@ -32,7 +32,6 @@ class LoginPage:
     self.driver.find_element(*LoginPage.BUTTON_ZALOGUJ).click()
 
   def logout_press(self):
-    self.driver.switch_to.frame(self.driver.find_element(*LoginPage.RELOG_IFRAME))
     self.driver.find_element(*LoginPage.BUTTON_LOGOUT).click()
 
 

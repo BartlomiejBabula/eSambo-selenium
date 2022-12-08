@@ -12,8 +12,9 @@ class Test_orders_send_and_prepare:
         select_store(self, franchiseStore)
         HomePage.articles_press(self)
         OrdersPage.prepare_order_press(self)
+        time.sleep(60)
         assert OrdersPage.prepare_order_check(self)
-
+  
     def test_send_order(self):
         select_store(self, franchiseStore)
         HomePage.articles_press(self)
@@ -23,6 +24,7 @@ class Test_orders_send_and_prepare:
         OrdersPage.set_quantity_of_first_article(self, 2)
         OrdersPage.send_order_inside_order_button_press(self)
         OrdersPage.execute_operation(self)
+        time.sleep(1)
         refresh_until(self, OrdersPage.CLOSE_BUTTON)
         OrdersPage.close_operation(self)
         assert OrdersPage.prepare_order_check(self)
@@ -71,6 +73,7 @@ class Test_orders_send_and_prepare:
         OrdersPage.order_in_future_input_send(self, tomorrow)
         OrdersPage.active_date_select(self)
         OrdersPage.prepare_order_press(self)
+        time.sleep(60)
         assert OrdersPage.prepare_order_in_future_check(self)
 
     def test_send_order_in_future(self):
@@ -87,6 +90,7 @@ class Test_orders_send_and_prepare:
         OrdersPage.set_quantity_of_first_article(self, 1)
         OrdersPage.send_order_inside_order_button_press(self)
         OrdersPage.execute_operation(self)
+        time.sleep(1)
         refresh_until(self, OrdersPage.CLOSE_BUTTON)
         OrdersPage.close_operation(self)
         assert OrdersPage.prepare_order_in_future_check(self)

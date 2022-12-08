@@ -8,8 +8,10 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.service import Service as Service2
 from pages.loginPage import LoginPage
 
 url = "http://10.5.1.125:17013/esambo/ifp"
@@ -39,9 +41,9 @@ orderScannerPath = os.path.join(sys.path[0] , f'ScannerFiles/{orderScanner}')
 def setup(request):
     current_data= datetime.now().strftime("%H.%M.%S %d.%m.%Y")
     if driverEnv == "chrome":
-        driver = Chrome(executable_path=ChromeDriverManager().install())
+        driver = Chrome(service=Service(ChromeDriverManager().install()))
     if driverEnv == "firefox":
-        driver = Firefox(executable_path=GeckoDriverManager().install()) 
+        driver = Firefox(service=Service2(GeckoDriverManager().install()))
     driver.get(url)
     driver.maximize_window()
     driver.find_element(*LoginPage.LOGIN_INPUT).send_keys(login)
@@ -89,8 +91,7 @@ def refresh_until(self, locator = (By.XPATH, "//span[contains(@aria-valuenow, '1
                 except:
                     time.sleep(1)
                 
-
-                        
+                    
         
         
             
